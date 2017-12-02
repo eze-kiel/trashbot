@@ -7,6 +7,7 @@ int joyY = 1;
 int joyX = 2;
 int ledPinGreen = 4;
 int ledPinRed = 2;
+int initialLed = 7;
 
 signed short joyValX;
 signed short joyValY;
@@ -14,21 +15,27 @@ signed short joyValY;
 void setup ()
 {
   servo1.attach(3);
-  servo1.write(0);
 
   Serial.begin(9600);
-
+  pinMode(initialLed, OUTPUT);
   pinMode(ledPinGreen, OUTPUT);
   pinMode(ledPinRed, OUTPUT);
 
+  digitalWrite(initialLed, HIGH);
+  servo1.write(0);
   delay(1000);
+  servo1.write(89);
+  delay(500);
+  digitalWrite(initialLed, LOW);
+
+
 }
 
 void loop ()
 {
   joyValX = analogRead(joyX);
 
-  if (joyValX > 550 || joyValX < 490)
+  if (joyValX > 540 || joyValX < 490)
   {
     digitalWrite(ledPinGreen, HIGH);
     digitalWrite(ledPinRed, LOW);
