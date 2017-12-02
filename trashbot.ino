@@ -13,7 +13,6 @@ signed short joyValY;
 void setup ()
 {
   servo1.attach(3);
-  pinMode(ledPin, OUTPUT);
   Serial.begin(9600);
   servo1.write(0);
   delay(1000);
